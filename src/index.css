@@ -86,11 +86,16 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border scroll-smooth;
   }
 
   body {
     @apply bg-health-gray text-foreground;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
   }
 }
 
@@ -104,18 +109,95 @@
   }
   
   .health-input {
-    @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-health-primary;
+    @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-health-primary transition-all duration-300;
   }
   
   .health-button {
-    @apply px-4 py-2 bg-health-primary text-white rounded-md hover:bg-blue-700 transition-colors duration-300;
+    @apply px-4 py-2 bg-health-primary text-white rounded-md hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105 active:scale-95;
   }
   
   .health-button-secondary {
-    @apply px-4 py-2 bg-health-secondary text-white rounded-md hover:bg-blue-400 transition-colors duration-300;
+    @apply px-4 py-2 bg-health-secondary text-white rounded-md hover:bg-blue-400 transition-colors duration-300 transform hover:scale-105 active:scale-95;
   }
   
   .health-pill {
-    @apply px-3 py-1 bg-health-lightGreen text-health-green rounded-full text-sm font-medium;
+    @apply px-3 py-1 bg-health-lightGreen text-health-green rounded-full text-sm font-medium transition-all duration-300 hover:bg-green-200;
   }
+  
+  /* Enhanced navigation link styles */
+  .nav-link {
+    @apply relative transition-all duration-300 hover:text-health-primary;
+  }
+  
+  .nav-link::after {
+    @apply content-[''] absolute left-0 bottom-0 w-0 h-0.5 bg-health-primary transition-all duration-300;
+  }
+  
+  .nav-link:hover::after, .nav-link.active::after {
+    @apply w-full;
+  }
+  
+  /* Card hover effects */
+  .hover-card {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  /* Glass morphism effect */
+  .glass-effect {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+}
+
+/* Enhanced Animation Keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(30, 136, 229, 0.4); }
+  50% { box-shadow: 0 0 20px 5px rgba(30, 136, 229, 0.6); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Animation Classes */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background: linear-gradient(90deg, #1E88E5, #4FC3F7, #1E88E5);
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Page transition animations */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
 }
