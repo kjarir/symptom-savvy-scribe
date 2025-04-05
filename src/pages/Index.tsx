@@ -6,6 +6,7 @@ import SymptomChecker from '../components/SymptomChecker';
 import Features from '../components/Features';
 import HealthResources from '../components/HealthResources';
 import ChatAssistant from '../components/ChatAssistant';
+import DoctorAppointment from '../components/DoctorAppointment';
 import Footer from '../components/Footer';
 
 const Index = () => {
@@ -15,6 +16,7 @@ const Index = () => {
       <Hero />
       <Features />
       <SymptomChecker />
+      <DoctorAppointment />
       <HealthResources />
       <ChatAssistant />
       <Footer />
